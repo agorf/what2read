@@ -91,5 +91,5 @@ books_len = books.length
 rank_pad = books_len.to_s.length
 
 books.each_with_index do |book, i|
-  puts "#{(books_len - i).to_s.rjust(rank_pad)} #{books[i]}"
+  puts "#{(books_len - i).to_s.rjust(rank_pad)} #{book}"
 end
