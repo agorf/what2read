@@ -21,6 +21,7 @@ Book = Struct.new(:title, :link, :average_rating, :ratings_count) do
       (ratings_count + MIN_RATINGS).to_f
   end
 
+  # Order by score ASC, title DESC
   def <=>(book)
     if score == book.score
       return -(title <=> book.title)
