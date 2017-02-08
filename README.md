@@ -69,6 +69,9 @@ You are now ready to use the script.
 The columns are in order: rank (descending), average rating on Goodreads, number
 of ratings on Goodreads, calculated score (descending), title, URL
 
+Make sure you run the script regularly since books are continually rated on
+Goodreads and the ranking is pretty volatile.
+
 ## License
 
 Licensed under the [MIT license][].
