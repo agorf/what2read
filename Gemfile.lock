@@ -1,0 +1,16 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    dotenv (2.2.0)
+    mini_portile2 (2.1.0)
+    nokogiri (1.7.0.1)
+      mini_portile2 (~> 2.1.0)
+    oauth (0.5.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  dotenv
+  nokogiri
+  oauth
