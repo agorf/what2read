@@ -33,8 +33,7 @@ Book = Struct.new(:title, :link, :average_rating, :ratings_count) do
 
   def to_s
     '%.2f %7d %.2f %s %s' % [average_rating, ratings_count, score,
-                             truncated_title.ljust(BOOK_TITLE_WIDTH),
-                             truncated_link]
+                             truncated_title, truncated_link]
   end
 
   def truncated_link
@@ -42,8 +41,7 @@ Book = Struct.new(:title, :link, :average_rating, :ratings_count) do
   end
 
   def truncated_title
-    return title if title.length <= BOOK_TITLE_WIDTH
-    title[0...BOOK_TITLE_WIDTH-3].chomp('.') + '...'
+    title[0...BOOK_TITLE_WIDTH].ljust(BOOK_TITLE_WIDTH, '.')
   end
 end
 
