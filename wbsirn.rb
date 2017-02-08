@@ -23,7 +23,7 @@ Book = Struct.new(:title, :link, :average_rating, :ratings_count) do
 
   def <=>(book)
     if score == book.score
-      return title <=> book.title
+      return -(title <=> book.title)
     end
 
     score <=> book.score
