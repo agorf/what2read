@@ -54,6 +54,17 @@ You are now ready to use the script.
 ## Usage
 
     $ bundle exec ruby wbsirn.rb
+    ...
+     10 4.42     340 4.34 The Principles of Object-Oriented JavaScript...... http://www.goodreads.com/book/show/20799234
+      9 4.35    7044 4.35 Clean Code: A Handbook of Agile Software Craftsman http://www.goodreads.com/book/show/3735293
+      8 4.35   41693 4.35 Sapiens: A Brief History of Humankind............. http://www.goodreads.com/book/show/23692271
+      7 4.35   74405 4.35 Cosmos............................................ http://www.goodreads.com/book/show/55030
+      6 4.36    3465 4.35 Code: The Hidden Language of Computer Hardware and http://www.goodreads.com/book/show/44882
+      5 4.37    2152 4.36 Tools of Titans: The Tactics, Routines, and Habits http://www.goodreads.com/book/show/31823677
+      4 4.47     369 4.38 The Elements of Computing Systems: Building a Mode http://www.goodreads.com/book/show/910789
+      3 4.48     602 4.42 Practical Vim: Edit Text at the Speed of Thought.. http://www.goodreads.com/book/show/13607232
+      2 4.45    3051 4.44 Structure and Interpretation of Computer Programs. http://www.goodreads.com/book/show/43713
+      1 4.56    1491 4.53 Practical Object Oriented Design in Ruby.......... http://www.goodreads.com/book/show/13507787
 
 ## License
 
