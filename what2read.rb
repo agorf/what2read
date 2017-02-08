@@ -3,7 +3,7 @@ require 'nokogiri'
 require 'oauth'
 require 'uri'
 
-Dotenv.load
+Dotenv.load!
 
 MIN_RATINGS          = ENV.fetch('MIN_RATINGS', 1000).to_i
 BOOK_TITLE_WIDTH     = 50

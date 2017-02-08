@@ -2,7 +2,7 @@ require 'dotenv'
 require 'launchy'
 require 'oauth'
 
-Dotenv.load
+Dotenv.load!
 
 request_token = OAuth::Consumer.new(
   ENV.fetch('GOODREADS_API_KEY'),
