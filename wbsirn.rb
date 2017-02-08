@@ -17,8 +17,8 @@ Book = Struct.new(:title, :link, :average_rating, :ratings_count) do
     return 0 if ratings_count < MIN_RATINGS
 
     # Bayesian estimates; http://stackoverflow.com/a/2134629
-    (ratings_count / (ratings_count + MIN_RATINGS).to_f) * average_rating +
-      (MIN_RATINGS / (ratings_count + MIN_RATINGS).to_f) * $average_rating
+    (average_rating * ratings_count + $average_rating * MIN_RATINGS) /
+      (ratings_count + MIN_RATINGS).to_f
   end
 
   def <=>(book)
