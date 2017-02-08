@@ -7,13 +7,14 @@ require 'oauth'
 Dotenv.load
 
 MIN_RATINGS          = 100
+BOOK_TITLE_WIDTH     = 50
 GOODREADS_API_KEY    = ENV['GOODREADS_API_KEY']
 GOODREADS_API_SECRET = ENV['GOODREADS_API_SECRET']
 GOODREADS_USER_ID    = ENV['GOODREADS_USER_ID']
 OAUTH_ACCESS_TOKEN   = ENV['OAUTH_ACCESS_TOKEN']
 OAUTH_ACCESS_SECRET  = ENV['OAUTH_ACCESS_SECRET']
 
-Book = Struct.new(:title, :average_rating, :ratings_count) do
+Book = Struct.new(:title, :link, :average_rating, :ratings_count) do
   def score
     return 0 if ratings_count < MIN_RATINGS
 
@@ -31,11 +32,18 @@ Book = Struct.new(:title, :average_rating, :ratings_count) do
   end
 
   def to_s
-    s = '%.2f %7d %.2f %s' % [average_rating, ratings_count, score, title]
+    '%.2f %7d %.2f %s %s' % [average_rating, ratings_count, score,
+                             truncated_title.ljust(BOOK_TITLE_WIDTH),
+                             truncated_link]
+  end
 
-    return s if s.length <= 80
+  def truncated_link
+    link[%r{.*/show/\d+}]
+  end
 
-    s[0...80-3].chomp('.') + '...'
+  def truncated_title
+    return title if title.length <= BOOK_TITLE_WIDTH
+    title[0...BOOK_TITLE_WIDTH-3].chomp('.') + '...'
   end
 end
 
@@ -66,6 +74,7 @@ loop do
     reviews.css('review').map do |book|
       Book.new(
         book.at('title').text,
+        book.at('link').text,
         book.at('average_rating').text.to_f,
         book.at('ratings_count').text.to_i,
       )
