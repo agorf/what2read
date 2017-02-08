@@ -6,7 +6,12 @@ require 'oauth'
 
 Dotenv.load
 
-MIN_RATINGS = 100
+MIN_RATINGS          = 100
+GOODREADS_API_KEY    = ENV['GOODREADS_API_KEY']
+GOODREADS_API_SECRET = ENV['GOODREADS_API_SECRET']
+GOODREADS_USER_ID    = ENV['GOODREADS_USER_ID']
+OAUTH_ACCESS_TOKEN   = ENV['OAUTH_ACCESS_TOKEN']
+OAUTH_ACCESS_SECRET  = ENV['OAUTH_ACCESS_SECRET']
 
 Book = Struct.new(:title, :average_rating, :ratings_count) do
   def score
@@ -34,12 +39,11 @@ Book = Struct.new(:title, :average_rating, :ratings_count) do
   end
 end
 
-consumer = OAuth::Consumer.new(ENV['GOODREADS_API_KEY'],
-                               ENV['GOODREADS_API_SECRET'],
+consumer = OAuth::Consumer.new(GOODREADS_API_KEY, GOODREADS_API_SECRET,
                                site: 'http://www.goodreads.com')
 
-access_token = OAuth::AccessToken.new(consumer, ENV['OAUTH_ACCESS_TOKEN'],
-                                      ENV['OAUTH_ACCESS_SECRET'])
+access_token = OAuth::AccessToken.new(consumer, OAUTH_ACCESS_TOKEN,
+                                      OAUTH_ACCESS_SECRET)
 
 page = 1
 
@@ -48,11 +52,11 @@ books = []
 loop do
   query = {
     v:        2,
-    id:       ENV['GOODREADS_USER_ID'],
+    id:       GOODREADS_USER_ID,
     shelf:    'to-read',
     page:     page,
     per_page: 200,
-    key:      ENV['GOODREADS_API_KEY'],
+    key:      GOODREADS_API_KEY,
   }.map {|k, v| CGI.escape(k.to_s) + '=' + CGI.escape(v.to_s) }.join('&')
   response = access_token.get("/review/list.xml?#{query}")
 
