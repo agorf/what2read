@@ -91,10 +91,16 @@ books_len = books.length
 rank_pad = books_len.to_s.length
 
 books.each_with_index do |book, i|
+  rank = books_len - i
+
+  if rank == 10 && books_len > 10
+    puts
+  end
+
   if book.score == 0
     print ' ' * rank_pad
   else
-    print (books_len - i).to_s.rjust(rank_pad)
+    print rank.to_s.rjust(rank_pad)
   end
 
   puts " #{book}"
