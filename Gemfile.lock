@@ -1,16 +1,22 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     dotenv (2.2.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     mini_portile2 (2.1.0)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     oauth (0.5.1)
+    public_suffix (2.0.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   dotenv
+  launchy
   nokogiri
   oauth
