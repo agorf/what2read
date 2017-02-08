@@ -26,12 +26,11 @@ Book = Struct.new(:title, :average_rating, :ratings_count) do
   end
 
   def to_s
-    '%.2f %7d %.2f %s' % [average_rating, ratings_count, score, truncated_title]
-  end
+    s = '%.2f %7d %.2f %s' % [average_rating, ratings_count, score, title]
 
-  def truncated_title
-    return title if title.length <= 62
-    title[0...59].chomp('.') + '...'
+    return s if s.length <= 80
+
+    s[0...80-3].chomp('.') + '...'
   end
 end
 
