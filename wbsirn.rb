@@ -4,7 +4,7 @@ require 'oauth'
 
 Dotenv.load
 
-MIN_RATINGS          = ENV.fetch('MIN_RATINGS', 100)
+MIN_RATINGS          = ENV.fetch('MIN_RATINGS', 100).to_i
 BOOK_TITLE_WIDTH     = 50
 GOODREADS_API_KEY    = ENV.fetch('GOODREADS_API_KEY')
 GOODREADS_API_SECRET = ENV.fetch('GOODREADS_API_SECRET')
