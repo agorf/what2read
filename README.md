@@ -32,8 +32,7 @@ the URL and set it as `GOODREADS_USER_ID` in the `.env` file.
 
     $ bundle install # to install necessary Gems
     $ bundle exec ruby w2r_generate_oauth_access_token.rb
-    Opening
-    http://www.goodreads.com/oauth/authorize?oauth_token=...
+    Opening http://www.goodreads.com/oauth/authorize?oauth_token=...
 
     Press ENTER after you have authorized the app
 
