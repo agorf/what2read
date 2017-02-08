@@ -66,6 +66,9 @@ You are now ready to use the script.
       2 4.45    3051 4.44 Structure and Interpretation of Computer Programs. http://www.goodreads.com/book/show/43713
       1 4.56    1491 4.53 Practical Object Oriented Design in Ruby.......... http://www.goodreads.com/book/show/13507787
 
+The columns are in order: rank (descending), average rating on Goodreads, number
+of ratings on Goodreads, calculated score (descending), title, URL
+
 ## License
 
 Licensed under the [MIT license][].
