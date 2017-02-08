@@ -1,10 +1,10 @@
-# wbsirn
+# what2read
 
 Given the shortness of free time and the abundance of great books nowadays, it
 makes sense to read books in order of importance.
 
-wbsirn is a simple Ruby script that helps you answer a very specific question:
-"**W**hich **b**ook **s**hould **I** **r**ead **n**ext?"
+what2read is a simple Ruby script that helps you answer a very specific
+question: "Which book should I read next?"
 
 It does that by accessing your [Goodreads][] "to-read" bookshelf, printing a
 listing of its books ordered by [a score][] which takes into account both the
@@ -53,7 +53,7 @@ You are now ready to use the script.
 
 ## Usage
 
-    $ bundle exec ruby wbsirn.rb
+    $ bundle exec ruby what2read.rb
     ...
      10 4.42     340 4.34 The Principles of Object-Oriented JavaScript...... http://www.goodreads.com/book/show/20799234
       9 4.35    7044 4.35 Clean Code: A Handbook of Agile Software Craftsman http://www.goodreads.com/book/show/3735293
@@ -84,4 +84,4 @@ Angelos Orfanakos, http://agorf.gr/
 [API]: https://www.goodreads.com/api
 [a score]: http://stackoverflow.com/a/2134629
 [key]: https://www.goodreads.com/api/keys
-[MIT license]: https://github.com/agorf/wbsirn/blob/master/LICENSE.txt
+[MIT license]: https://github.com/agorf/what2read/blob/master/LICENSE.txt
