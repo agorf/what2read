@@ -31,7 +31,7 @@ the URL and set it as `GOODREADS_USER_ID` in the `.env` file.
 ### Step 4: Create an OAuth access token
 
     $ bundle install # to install necessary Gems
-    $ bundle exec ruby generate_oauth_access_token.rb
+    $ bundle exec ruby w2r_generate_oauth_access_token.rb
     Opening
     http://www.goodreads.com/oauth/authorize?oauth_token=...
 
