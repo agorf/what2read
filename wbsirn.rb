@@ -1,6 +1,7 @@
 require 'dotenv'
 require 'nokogiri'
 require 'oauth'
+require 'uri'
 
 Dotenv.load
 
@@ -55,14 +56,14 @@ page = 1
 books = []
 
 loop do
-  query = {
+  query = URI.encode_www_form(
     v:        2,
     id:       GOODREADS_USER_ID,
     shelf:    'to-read',
     page:     page,
     per_page: 200,
     key:      GOODREADS_API_KEY,
-  }.map {|k, v| CGI.escape(k.to_s) + '=' + CGI.escape(v.to_s) }.join('&')
+  )
   response = access_token.get("/review/list.xml?#{query}")
 
   reviews = Nokogiri.XML(response.body).at('reviews')
