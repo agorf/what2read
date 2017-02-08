@@ -83,5 +83,11 @@ loop do
 end
 
 $average_rating = books.map(&:average_rating).reduce(:+) / books.size.to_f
+books.sort!
 
-puts books.sort
+books_len = books.length
+rank_pad = books_len.to_s.length
+
+books.each_with_index do |book, i|
+  puts "#{(books_len - i).to_s.rjust(rank_pad)} #{books[i]}"
+end
