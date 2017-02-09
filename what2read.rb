@@ -32,7 +32,7 @@ Book = Struct.new(:title, :link, :average_rating, :ratings_count) do
   end
 
   def to_s
-    '%.2f %7d %.2f %s %s' % [average_rating, ratings_count, score,
+    '%.2f %.2f %7d %s %s' % [score, average_rating, ratings_count,
                              truncated_title, truncated_link]
   end
 

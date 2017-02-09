@@ -54,19 +54,22 @@ You are now ready to use the script.
 
     $ bundle exec ruby what2read.rb
     ...
-     10 4.42     340 4.34 The Principles of Object-Oriented JavaScript...... http://www.goodreads.com/book/show/20799234
-      9 4.35    7044 4.35 Clean Code: A Handbook of Agile Software Craftsman http://www.goodreads.com/book/show/3735293
-      8 4.35   41693 4.35 Sapiens: A Brief History of Humankind............. http://www.goodreads.com/book/show/23692271
-      7 4.35   74405 4.35 Cosmos............................................ http://www.goodreads.com/book/show/55030
-      6 4.36    3465 4.35 Code: The Hidden Language of Computer Hardware and http://www.goodreads.com/book/show/44882
-      5 4.37    2152 4.36 Tools of Titans: The Tactics, Routines, and Habits http://www.goodreads.com/book/show/31823677
-      4 4.47     369 4.38 The Elements of Computing Systems: Building a Mode http://www.goodreads.com/book/show/910789
-      3 4.48     602 4.42 Practical Vim: Edit Text at the Speed of Thought.. http://www.goodreads.com/book/show/13607232
-      2 4.45    3051 4.44 Structure and Interpretation of Computer Programs. http://www.goodreads.com/book/show/43713
-      1 4.56    1491 4.53 Practical Object Oriented Design in Ruby.......... http://www.goodreads.com/book/show/13507787
 
-The columns are in order: rank (descending), average rating on Goodreads, number
-of ratings on Goodreads, calculated score (descending), title, URL
+     10 4.31 4.32   19365 Pale Blue Dot: A Vision of the Human Future in Spa http://www.goodreads.com/book/show/61663
+      9 4.31 4.35    7046 Clean Code: A Handbook of Agile Software Craftsman http://www.goodreads.com/book/show/3735293
+      8 4.33 4.33  171485 Man's Search for Meaning.......................... http://www.goodreads.com/book/show/4069
+      7 4.34 4.35   41818 Sapiens: A Brief History of Humankind............. http://www.goodreads.com/book/show/23692271
+      6 4.34 4.35   50469 Endurance: Shackleton's Incredible Voyage......... http://www.goodreads.com/book/show/139069
+      5 4.35 4.35   74373 Cosmos............................................ http://www.goodreads.com/book/show/55030
+      4 4.35 4.45    3050 Structure and Interpretation of Computer Programs. http://www.goodreads.com/book/show/43713
+      3 4.36 4.56    1490 Practical Object Oriented Design in Ruby.......... http://www.goodreads.com/book/show/13507787
+      2 4.40 4.42   13768 Shoe Dog: A Memoir by the Creator of NIKE......... http://www.goodreads.com/book/show/27220736
+      1 4.42 4.58    2335 Mountaineering: The Freedom of the Hills.......... http://www.goodreads.com/book/show/9539408
+
+270 book(s) to read
+
+The columns are (in order): rank (descending), calculated score (descending),
+average rating on Goodreads, number of ratings on Goodreads, title, URL
 
 Make sure you run the script regularly since books are continually rated on
 Goodreads and the ranking is pretty volatile.
