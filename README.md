@@ -65,8 +65,8 @@ You are now ready to use the script.
       3 4.36 4.56    1490 Practical Object Oriented Design in Ruby.......... http://www.goodreads.com/book/show/13507787
       2 4.40 4.42   13768 Shoe Dog: A Memoir by the Creator of NIKE......... http://www.goodreads.com/book/show/27220736
       1 4.42 4.58    2335 Mountaineering: The Freedom of the Hills.......... http://www.goodreads.com/book/show/9539408
-
-270 book(s) to read
+    
+    270 book(s) to read
 
 The columns are (in order): rank (descending), calculated score (descending),
 average rating on Goodreads, number of ratings on Goodreads, title, URL
