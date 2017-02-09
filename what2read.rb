@@ -93,7 +93,7 @@ rank_pad = books_len.to_s.length
 books.each_with_index do |book, i|
   rank = books_len - i
 
-  if rank == 10 && books_len > 10
+  if rank % 10 == 0 && i > 0
     puts
   end
 
