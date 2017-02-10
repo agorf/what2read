@@ -7,13 +7,14 @@ Dotenv.load!
 
 MIN_RATINGS          = ENV.fetch('MIN_RATINGS', 1000).to_i
 BOOK_TITLE_WIDTH     = 50
+BOOK_AUTHORS_WIDTH   = 30
 GOODREADS_API_KEY    = ENV.fetch('GOODREADS_API_KEY')
 GOODREADS_API_SECRET = ENV.fetch('GOODREADS_API_SECRET')
 GOODREADS_USER_ID    = ENV.fetch('GOODREADS_USER_ID')
 OAUTH_ACCESS_TOKEN   = ENV.fetch('OAUTH_ACCESS_TOKEN')
 OAUTH_ACCESS_SECRET  = ENV.fetch('OAUTH_ACCESS_SECRET')
 
-Book = Struct.new(:title, :link, :average_rating, :ratings_count) do
+Book = Struct.new(:title, :authors, :link, :average_rating, :ratings_count) do
   def score
     return 0 if ratings_count < MIN_RATINGS
 
@@ -32,8 +33,13 @@ Book = Struct.new(:title, :link, :average_rating, :ratings_count) do
   end
 
   def to_s
-    '%.2f %.2f %7d %s %s' % [score, average_rating, ratings_count,
-                             truncated_title, truncated_link]
+    '%.2f %.2f %7d %s %s %s' % [score, average_rating, ratings_count,
+                                truncated_title, truncated_authors,
+                                truncated_link]
+  end
+
+  def truncated_authors
+    authors.join(', ')[0...BOOK_AUTHORS_WIDTH].ljust(BOOK_AUTHORS_WIDTH, '.')
   end
 
   def truncated_link
@@ -72,6 +78,7 @@ loop do
     reviews.css('review').map do |book|
       Book.new(
         book.at('title').text,
+        book.css('authors author name').map(&:text).map(&:strip),
         book.at('link').text,
         book.at('average_rating').text.to_f,
         book.at('ratings_count').text.to_i,
