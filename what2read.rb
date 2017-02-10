@@ -95,6 +95,7 @@ $average_rating = books.map(&:average_rating).reduce(:+) / books.size.to_f
 books.sort!
 
 books_len = books.length
+books_with_score = 0
 rank_pad = books_len.to_s.length
 
 books.each_with_index do |book, i|
@@ -107,6 +108,7 @@ books.each_with_index do |book, i|
   if book.score == 0
     print ' ' * rank_pad
   else
+    books_with_score += 1
     print rank.to_s.rjust(rank_pad)
   end
 
@@ -114,4 +116,4 @@ books.each_with_index do |book, i|
 end
 
 puts
-puts "#{books_len} book(s) to read"
+puts "#{books_len} book(s) to read; #{books_with_score} with a score"
