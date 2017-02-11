@@ -6,9 +6,12 @@
     <meta name="generator" content="what2read - https://github.com/agorf/what2read">
     <style>
       body { font-family: sans-serif; }
-      a img { border: none }
+      a img { border: none; display: block; }
       .align-center { text-align: center; }
       .align-right { text-align: right; }
+      table { border-spacing: 0; }
+      td { padding: 4px; }
+      .odd td { background: #ddd; }
     </style>
   </head>
   <body>
@@ -23,7 +26,7 @@
         <th>Ratings</th>
       </tr>
       <% books.each.with_index(1) do |book, rank| %>
-        <tr>
+        <tr class="<%= rank % 2 == 0 ? 'even' : 'odd' %>">
           <td class="align-center"><%= rank %></td>
           <td>
             <a href="<%= book.link %>"><img <%= rank > 20 ? 'data-normal' : 'src' %>="<%= book.cover_url %>" alt="cover" width="43"></a>
