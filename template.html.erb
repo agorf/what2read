@@ -21,6 +21,7 @@
         <th>Cover</th>
         <th>Title</th>
         <th>Authors</th>
+        <th>Pages</th>
         <th>Score</th>
         <th>Average Rating</th>
         <th>Ratings</th>
@@ -33,6 +34,7 @@
           </td>
           <td><%= book.title %></td>
           <td><%= book.authors.join(', ') %></td>
+          <td class="align-center"><%= book.pages %></td>
           <td class="align-center"><%= '%.2f' % book.score if book.score > 0 %></td>
           <td class="align-center"><%= '%.2f' % book.average_rating %></td>
           <td class="align-right"><%= book.ratings_count %></td>

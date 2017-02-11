@@ -40,6 +40,10 @@ class Book
     at('link')
   end
 
+  def pages
+    at('num_pages', Integer)
+  end
+
   def average_rating
     at('average_rating', Float)
   end
