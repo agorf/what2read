@@ -61,13 +61,17 @@ class Book
       placeholder_image_url
   end
 
-  # Order by score DESC, title ASC
+  # Order by score DESC, ratings DESC, title ASC
   def <=>(book)
-    if score == book.score
-      return title <=> book.title
+    if score != book.score
+      return -(score <=> book.score)
     end
 
-    -(score <=> book.score)
+    if ratings_count != book.ratings_count
+      return -(ratings_count <=> book.ratings_count)
+    end
+
+    return title <=> book.title
   end
 
   private
