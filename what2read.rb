@@ -5,16 +5,45 @@ require 'uri'
 
 Dotenv.load!
 
-MIN_RATINGS          = ENV.fetch('MIN_RATINGS', 1000).to_i
-BOOK_TITLE_WIDTH     = 50
-BOOK_AUTHORS_WIDTH   = 30
 GOODREADS_API_KEY    = ENV.fetch('GOODREADS_API_KEY')
 GOODREADS_API_SECRET = ENV.fetch('GOODREADS_API_SECRET')
 GOODREADS_USER_ID    = ENV.fetch('GOODREADS_USER_ID')
 OAUTH_ACCESS_TOKEN   = ENV.fetch('OAUTH_ACCESS_TOKEN')
 OAUTH_ACCESS_SECRET  = ENV.fetch('OAUTH_ACCESS_SECRET')
 
-Book = Struct.new(:title, :authors, :link, :average_rating, :ratings_count) do
+class Book
+  MIN_RATINGS = ENV.fetch('MIN_RATINGS', 1000).to_i
+
+  attr_reader :node
+
+  def initialize(node)
+    @node = node
+  end
+
+  def title
+    node.at('title').text
+  end
+
+  def truncated_title
+    truncate(title, 50)
+  end
+
+  def authors
+    node.css('authors author name').map(&:text)
+  end
+
+  def link
+    node.at('link').text
+  end
+
+  def average_rating
+    node.at('average_rating').text.to_f
+  end
+
+  def ratings_count
+    node.at('ratings_count').text.to_i
+  end
+
   def score
     return 0 if ratings_count < MIN_RATINGS
 
@@ -38,16 +67,18 @@ Book = Struct.new(:title, :authors, :link, :average_rating, :ratings_count) do
                                 truncated_link]
   end
 
+  private
+
+  def truncate(str, length)
+    str[0...length].ljust(length, '.')
+  end
+
   def truncated_authors
-    authors.join(', ')[0...BOOK_AUTHORS_WIDTH].ljust(BOOK_AUTHORS_WIDTH, '.')
+    truncate(authors.join(', '), 30)
   end
 
   def truncated_link
     link[%r{.*/show/\d+}]
-  end
-
-  def truncated_title
-    title[0...BOOK_TITLE_WIDTH].ljust(BOOK_TITLE_WIDTH, '.')
   end
 end
 
@@ -72,21 +103,11 @@ loop do
   )
   response = access_token.get("/review/list.xml?#{query}")
 
-  reviews = Nokogiri.XML(response.body).at('reviews')
+  doc = Nokogiri.XML(response.body)
 
-  books.concat(
-    reviews.css('review').map do |book|
-      Book.new(
-        book.at('title').text,
-        book.css('authors author name').map(&:text).map(&:strip),
-        book.at('link').text,
-        book.at('average_rating').text.to_f,
-        book.at('ratings_count').text.to_i,
-      )
-    end
-  )
+  books.concat(doc.css('book').map {|node| Book.new(node) })
 
-  break if books.size == reviews['total'].to_i
+  break if books.size == doc.at('reviews')['total'].to_i
 
   page += 1
 end
