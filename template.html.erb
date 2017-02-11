@@ -10,9 +10,8 @@
       .align-center { text-align: center; }
       .align-right { text-align: right; }
       table { border-spacing: 0; width: 100%; }
-      th, td { padding: 4px; }
+      th, td { padding: 4px; border-bottom: 1px solid #ccc; }
       th { text-align: left; }
-      .odd td { background: #ddd; }
     </style>
   </head>
   <body>
@@ -28,7 +27,7 @@
         <th>Ratings</th>
       </tr>
       <% books.each.with_index(1) do |book, rank| %>
-        <tr class="<%= rank % 2 == 0 ? 'even' : 'odd' %>">
+        <tr>
           <td class="align-center"><%= rank %></td>
           <td>
             <a href="<%= book.link %>"><img <%= rank > 20 ? 'data-normal' : 'src' %>="<%= book.cover_url %>" alt="cover" width="43"></a>
