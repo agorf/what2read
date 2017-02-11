@@ -15,9 +15,8 @@ GOODREADS_USER_ID    = ENV.fetch('GOODREADS_USER_ID')
 OAUTH_ACCESS_TOKEN   = ENV.fetch('OAUTH_ACCESS_TOKEN')
 OAUTH_ACCESS_SECRET  = ENV.fetch('OAUTH_ACCESS_SECRET')
 
-Author = Struct.new(:name, :link)
-
 class Book
+  Author = Struct.new(:name, :link)
   MIN_RATINGS = ENV.fetch('MIN_RATINGS', 1000).to_i
 
   attr_reader :node
