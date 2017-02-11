@@ -22,7 +22,7 @@
           <td><%= book.title %></td>
           <td><%= book.authors.join(', ') %></td>
           <td><%= '%.2f' % book.score if book.score > 0 %></td>
-          <td><%= book.average_rating %></td>
+          <td><%= '%.2f' % book.average_rating %></td>
           <td><%= book.ratings_count %></td>
           <td><a href="<%= book.link %>">Goodreads</a></td>
         </tr>
