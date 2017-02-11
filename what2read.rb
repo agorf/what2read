@@ -1,6 +1,9 @@
 require 'dotenv'
 require 'erb'
+require 'json'
+require 'net/http'
 require 'nokogiri'
+require 'open-uri'
 require 'oauth'
 require 'uri'
 
@@ -22,7 +25,7 @@ class Book
   end
 
   def title
-    node.at('title').text
+    at('title')
   end
 
   def truncated_title
@@ -34,15 +37,15 @@ class Book
   end
 
   def link
-    node.at('link').text
+    at('link')
   end
 
   def average_rating
-    node.at('average_rating').text.to_f
+    at('average_rating', Float)
   end
 
   def ratings_count
-    node.at('ratings_count').text.to_i
+    at('ratings_count', Integer)
   end
 
   def score
@@ -51,6 +54,11 @@ class Book
     # Bayesian estimates; http://stackoverflow.com/a/2134629
     (average_rating * ratings_count + $average_rating * MIN_RATINGS) /
       (ratings_count + MIN_RATINGS).to_f
+  end
+
+  def cover_url
+    goodreads_image_url || openlibrary_image_url || google_image_url ||
+      placeholder_image_url
   end
 
   # Order by score DESC, title ASC
@@ -69,6 +77,44 @@ class Book
   end
 
   private
+
+  def isbn
+    at('isbn13') || at('isbn')
+  end
+
+  def goodreads_image_url
+    url = at('small_image_url')
+    return if url =~ /\bnophoto\b/
+    url
+  end
+
+  def openlibrary_image_url
+    return if isbn.nil?
+    uri = URI("http://covers.openlibrary.org/b/isbn/#{isbn}-S.jpg?default=false")
+    http = Net::HTTP.new(uri.host, uri.port)
+    response = http.head(uri.request_uri)
+    return if response.code.to_i == 404
+    uri.to_s
+  end
+
+  def google_image_url
+    return if isbn.nil?
+    data = open("https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}").read
+    json = JSON.parse(data)
+    item = json.fetch('items', [])[0]
+    return if item.nil?
+    item.fetch('volumeInfo', {}).fetch('imageLinks', {})['smallThumbnail']
+  end
+
+  def placeholder_image_url
+    'http://s.gr-assets.com/assets/nophoto/book/50x75.png'
+  end
+
+  def at(selector, klass = String)
+    text = node.at(selector).text.strip
+    return if text.length == 0
+    method(klass.name.to_sym).call(text)
+  end
 
   def truncate(str, length)
     str[0...length].ljust(length, '.')
