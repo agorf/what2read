@@ -121,6 +121,8 @@ page = 1
 
 books = []
 
+$stderr.puts "Please wait; this may take a while..."
+
 loop do
   query = URI.encode_www_form(
     v:        2,
