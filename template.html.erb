@@ -24,7 +24,7 @@
       </tr>
       <% books.each.with_index(1) do |book, rank| %>
         <tr>
-          <td class="align-right"><%= rank %></td>
+          <td class="align-center"><%= rank %></td>
           <td>
             <a href="<%= book.link %>"><img <%= rank > 20 ? 'data-normal' : 'src' %>="<%= book.cover_url %>" alt="cover" width="43"></a>
           </td>
