@@ -28,10 +28,6 @@ class Book
     at('title')
   end
 
-  def truncated_title
-    truncate(title, 50)
-  end
-
   def authors
     node.css('authors author name').map(&:text)
   end
@@ -74,12 +70,6 @@ class Book
     -(score <=> book.score)
   end
 
-  def to_s
-    '%.2f %.2f %7d %s %s %s' % [score, average_rating, ratings_count,
-                                truncated_title, truncated_authors,
-                                truncated_link]
-  end
-
   private
 
   def isbn
@@ -118,18 +108,6 @@ class Book
     text = node.at(selector).text.strip
     return if text.length == 0
     method(klass.name.to_sym).call(text)
-  end
-
-  def truncate(str, length)
-    str[0...length].ljust(length, '.')
-  end
-
-  def truncated_authors
-    truncate(authors.join(', '), 30)
-  end
-
-  def truncated_link
-    link[%r{.*/show/\d+}]
   end
 end
 
