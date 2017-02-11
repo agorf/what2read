@@ -1,4 +1,5 @@
 require 'dotenv'
+require 'erb'
 require 'nokogiri'
 require 'oauth'
 require 'uri'
@@ -52,13 +53,13 @@ class Book
       (ratings_count + MIN_RATINGS).to_f
   end
 
-  # Order by score ASC, title DESC
+  # Order by score DESC, title ASC
   def <=>(book)
     if score == book.score
-      return -(title <=> book.title)
+      return title <=> book.title
     end
 
-    score <=> book.score
+    -(score <=> book.score)
   end
 
   def to_s
@@ -115,26 +116,4 @@ end
 $average_rating = books.map(&:average_rating).reduce(:+) / books.size.to_f
 books.sort!
 
-books_len = books.length
-books_with_score = 0
-rank_pad = books_len.to_s.length
-
-books.each_with_index do |book, i|
-  rank = books_len - i
-
-  if rank % 10 == 0 && i > 0
-    puts
-  end
-
-  if book.score == 0
-    print ' ' * rank_pad
-  else
-    books_with_score += 1
-    print rank.to_s.rjust(rank_pad)
-  end
-
-  puts " #{book}"
-end
-
-puts
-puts "#{books_len} book(s) to read; #{books_with_score} with a score"
+puts ERB.new(File.read('template.html.erb')).result(binding)

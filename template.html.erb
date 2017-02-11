@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Books to read on Goodreads</title>
+    <meta charset="utf-8">
+    <meta name="generator" content="what2read - https://github.com/agorf/what2read">
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Rank</th>
+        <th>Title</th>
+        <th>Authors</th>
+        <th>Score</th>
+        <th>Average Rating</th>
+        <th>Ratings</th>
+        <th>Link</th>
+      </tr>
+      <% books.each.with_index(1) do |book, rank| %>
+        <tr>
+          <td><%= rank %></td>
+          <td><%= book.title %></td>
+          <td><%= book.authors.join(', ') %></td>
+          <td><%= '%.2f' % book.score if book.score > 0 %></td>
+          <td><%= book.average_rating %></td>
+          <td><%= book.ratings_count %></td>
+          <td><a href="<%= book.link %>">Goodreads</a></td>
+        </tr>
+      <% end %>
+    </table>
+  </body>
+</html>
