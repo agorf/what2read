@@ -4,6 +4,11 @@
     <title>Books to read on Goodreads</title>
     <meta charset="utf-8">
     <meta name="generator" content="what2read - https://github.com/agorf/what2read">
+    <style>
+      body { font-family: sans-serif; }
+      .align-center { text-align: center; }
+      .align-right { text-align: right; }
+    </style>
   </head>
   <body>
     <table>
@@ -18,12 +23,12 @@
       </tr>
       <% books.each.with_index(1) do |book, rank| %>
         <tr>
-          <td><%= rank %></td>
+          <td class="align-right"><%= rank %></td>
           <td><%= book.title %></td>
           <td><%= book.authors.join(', ') %></td>
-          <td><%= '%.2f' % book.score if book.score > 0 %></td>
-          <td><%= '%.2f' % book.average_rating %></td>
-          <td><%= book.ratings_count %></td>
+          <td class="align-center"><%= '%.2f' % book.score if book.score > 0 %></td>
+          <td class="align-center"><%= '%.2f' % book.average_rating %></td>
+          <td class="align-right"><%= book.ratings_count %></td>
           <td><a href="<%= book.link %>">Goodreads</a></td>
         </tr>
       <% end %>
