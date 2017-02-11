@@ -15,6 +15,8 @@ GOODREADS_USER_ID    = ENV.fetch('GOODREADS_USER_ID')
 OAUTH_ACCESS_TOKEN   = ENV.fetch('OAUTH_ACCESS_TOKEN')
 OAUTH_ACCESS_SECRET  = ENV.fetch('OAUTH_ACCESS_SECRET')
 
+Author = Struct.new(:name, :link)
+
 class Book
   MIN_RATINGS = ENV.fetch('MIN_RATINGS', 1000).to_i
 
@@ -29,7 +31,9 @@ class Book
   end
 
   def authors
-    node.css('authors author name').map(&:text)
+    node.css('authors author').map do |author|
+      Author.new(author.at('name').text, author.at('link').text)
+    end
   end
 
   def link
