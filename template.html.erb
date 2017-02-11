@@ -32,7 +32,7 @@
           <td>
             <a href="<%= book.link %>"><img <%= rank > 20 ? 'data-normal' : 'src' %>="<%= book.cover_url %>" alt="cover" width="43"></a>
           </td>
-          <td><%= book.title %></td>
+          <td><a href="<%= book.link %>"><%= book.title %></a></td>
           <td><%= book.authors.join(', ') %></td>
           <td class="align-center"><%= book.pages %></td>
           <td class="align-center"><%= '%.2f' % book.score if book.score > 0 %></td>
