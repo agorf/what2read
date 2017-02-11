@@ -52,8 +52,8 @@ class Book
     return 0 if ratings_count < MIN_RATINGS
 
     # Bayesian estimates; http://stackoverflow.com/a/2134629
-    (average_rating * ratings_count + $average_rating * MIN_RATINGS) /
-      (ratings_count + MIN_RATINGS).to_f
+    ((average_rating * ratings_count + $average_rating * MIN_RATINGS) /
+     (ratings_count + MIN_RATINGS).to_f).round(2)
   end
 
   def cover_url
