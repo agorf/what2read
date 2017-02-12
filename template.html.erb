@@ -48,25 +48,25 @@
             <td class="align-right"><%= book.ratings_count %></td>
           </tr>
         <% end %>
-        <script src="https://unpkg.com/layzr.js@2.2.2/dist/layzr.js"></script>
-        <script src="https://unpkg.com/tablesort@5.0.0/tablesort.min.js"></script>
-        <script src="https://unpkg.com/tablesort@5.0.0/src/sorts/tablesort.number.js"></script>
-        <script>
-          document.addEventListener('DOMContentLoaded', function(event) {
-            var layzr = Layzr();
-
-            layzr.update().check().handlers(true);
-
-            var table = document.getElementById('books');
-
-            table.addEventListener('afterSort', function() {
-              layzr.check();
-            });
-
-            new Tablesort(table);
-          });
-        </script>
       </tbody>
     </table>
+    <script src="https://unpkg.com/layzr.js@2.2.2/dist/layzr.js"></script>
+    <script src="https://unpkg.com/tablesort@5.0.0/tablesort.min.js"></script>
+    <script src="https://unpkg.com/tablesort@5.0.0/src/sorts/tablesort.number.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(event) {
+        var layzr = Layzr();
+
+        layzr.update().check().handlers(true);
+
+        var table = document.getElementById('books');
+
+        table.addEventListener('afterSort', function() {
+          layzr.check();
+        });
+
+        new Tablesort(table);
+      });
+    </script>
   </body>
 </html>
