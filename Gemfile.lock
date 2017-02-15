@@ -11,6 +11,8 @@ GEM
       mini_portile2 (~> 2.1.0)
     oauth (0.5.1)
     public_suffix (2.0.5)
+    sequel (4.43.0)
+    sqlite3 (1.3.13)
 
 PLATFORMS
   ruby
@@ -20,3 +22,5 @@ DEPENDENCIES
   launchy
   nokogiri
   oauth
+  sequel
+  sqlite3
