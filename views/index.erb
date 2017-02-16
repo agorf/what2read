@@ -23,6 +23,7 @@
           <th class="cover"></th>
           <th>Title</th>
           <th>Authors</th>
+          <th>ISBN</th>
           <th>Pages</th>
           <th>Score</th>
           <th>Rating</th>
@@ -40,6 +41,11 @@
             <td>
               <% book.authors.each do |author| %>
                 <a href="<%= author.link %>"><%= author.name %></a>
+              <% end %>
+            </td>
+            <td>
+              <% if book.isbn %>
+                <a href="https://en.wikipedia.org/wiki/Special:BookSources/<%= book.isbn %>"><%= book.isbn %></a>
               <% end %>
             </td>
             <td class="align-center"><%= book.pages %></td>
