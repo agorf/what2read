@@ -1,0 +1,10 @@
+body { font-family: sans-serif; font-size: 13px; }
+a img { border: none; display: block; }
+.align-center { text-align: center; }
+.align-right { text-align: right; }
+table { border-spacing: 0; width: 100%; }
+th, td { padding: 4px; border-bottom: 1px solid #ccc; }
+th { text-align: left; }
+th a { color: black; text-decoration: none; }
+th.asc:after { content: "\00a0\25b2"; }
+th.desc:after { content: "\00a0\25bc"; }
