@@ -30,11 +30,11 @@
         </tr>
       </thead>
       <tbody>
-        <% books.each.with_index(1) do |book, rank| %>
+        <% @books.each_with_index do |book, rank| %>
           <tr>
-            <td class="align-center"><%= rank %></td>
+            <td class="align-center"><%= rank + 1 %></td>
             <td>
-              <a href="<%= book.link %>"><img <%= rank > 20 ? 'data-normal' : 'src' %>="<%= book.cover_url %>" alt="cover" width="43"></a>
+              <a href="<%= book.link %>"><img <%= rank > 20 ? 'data-normal' : 'src' %>="<%= book.cover_path %>" alt="cover" width="43"></a>
             </td>
             <td><a href="<%= book.link %>"><%= book.title %></a></td>
             <td>
@@ -44,8 +44,8 @@
             </td>
             <td class="align-center"><%= book.pages %></td>
             <td class="align-center"><%= '%.2f' % book.score if book.score > 0 %></td>
-            <td class="align-center"><%= '%.2f' % book.average_rating %></td>
-            <td class="align-right"><%= book.ratings_count %></td>
+            <td class="align-center"><%= '%.2f' % book.rating %></td>
+            <td class="align-right"><%= book.ratings %></td>
           </tr>
         <% end %>
       </tbody>
