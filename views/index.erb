@@ -11,8 +11,10 @@
       .align-right { text-align: right; }
       table { border-spacing: 0; width: 100%; }
       th, td { padding: 4px; border-bottom: 1px solid #ccc; }
-      th { text-align: left; cursor: pointer; }
-      th.cover { cursor: auto; }
+      th { text-align: left; }
+      th a { color: black; text-decoration: none; }
+      th.asc:after { content: "\00a0\25b2"; }
+      th.desc:after { content: "\00a0\25bc"; }
     </style>
   </head>
   <body>
@@ -21,13 +23,9 @@
         <tr>
           <th class="align-center">#</th>
           <th class="cover"></th>
-          <th>Title</th>
-          <th>Authors</th>
-          <th>ISBN</th>
-          <th>Pages</th>
-          <th>Score</th>
-          <th>Rating</th>
-          <th>Ratings</th>
+          <% %w{Title Authors ISBN Pages Score Rating Ratings}.each do |column| %>
+            <th class="<%= column_order_class(column) %>"><a href="<%= column_url(column) %>"><%= column %></a></th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
@@ -57,21 +55,9 @@
       </tbody>
     </table>
     <script src="https://unpkg.com/layzr.js@2.2.2/dist/layzr.js"></script>
-    <script src="https://unpkg.com/tablesort@5.0.0/tablesort.min.js"></script>
-    <script src="https://unpkg.com/tablesort@5.0.0/src/sorts/tablesort.number.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function(event) {
-        var layzr = Layzr();
-
-        layzr.update().check().handlers(true);
-
-        var table = document.getElementById('books');
-
-        table.addEventListener('afterSort', function() {
-          layzr.check();
-        });
-
-        new Tablesort(table);
+        Layzr().update().check().handlers(true);
       });
     </script>
   </body>
