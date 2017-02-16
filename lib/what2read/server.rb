@@ -3,7 +3,15 @@ require 'what2read/book'
 
 module What2Read
   class Server < Sinatra::Base
-    ORDER_BY_COLS = %w{title authors isbn pages score rating ratings}.freeze
+    ORDER_BY_COLS = {
+      'title'   => 'asc',
+      'authors' => 'asc',
+      'isbn'    => 'asc',
+      'pages'   => 'desc',
+      'score'   => 'desc',
+      'rating'  => 'desc',
+      'ratings' => 'desc',
+    }.freeze
 
     set :root, File.expand_path('../..', File.dirname(__FILE__))
 
@@ -31,6 +39,16 @@ module What2Read
     end
 
     helpers do
+      def column_order(name)
+        name.downcase!
+
+        if @order_by == name
+          { 'asc' => 'desc', 'desc' => 'asc' }[@order] # invert
+        else
+          ORDER_BY_COLS.fetch(name) # default
+        end
+      end
+
       def column_order_class(name)
         @order if @order_by == name.downcase
       end
@@ -39,12 +57,12 @@ module What2Read
         name.downcase!
         '?order_by=%{order_by}&amp;order=%{order}' % {
           order_by: name,
-          order: @order_by == name && @order == 'asc' ? 'desc' : 'asc'
+          order: column_order(name),
         }
       end
 
       def redirect_to_defaults?
-        params.empty? || !ORDER_BY_COLS.include?(@order_by) ||
+        params.empty? || !ORDER_BY_COLS.has_key?(@order_by) ||
           !%w{asc desc}.include?(@order)
       end
     end
