@@ -13,8 +13,11 @@ module What2Read
     many_to_many :authors
 
     def self.parse_and_create(book_node)
+      isbn = at(book_node, 'isbn13') || at(book_node, 'isbn')
+      isbn = isbn.scan(/\d+/).join if isbn
+
       book         = Book.new
-      book.isbn    = at(book_node, 'isbn13') || at(book_node, 'isbn')
+      book.isbn    = isbn
       book.title   = at(book_node, 'title')
       book.link    = at(book_node, 'link')
       book.pages   = at(book_node, 'num_pages', Integer)
