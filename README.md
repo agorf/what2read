@@ -1,8 +1,8 @@
 # what2read
 
-Given the shortness of free time and the abundance of great books nowadays, it
-makes sense to read books in order of importance. what2read helps you answer a
-very specific question: "Which book should I read next?"
+Given the shortage of time and the abundance of great books, it makes sense to
+read books in order of importance. what2read helps you answer a very specific
+question: "Which book should I read next?"
 
 It consists of three scripts:
 
