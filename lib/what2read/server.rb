@@ -33,7 +33,21 @@ module What2Read
           select_more { group_concat(`authors.name`).as(:authors) }
       end
 
-      @books = @books.order(Sequel.public_send(@order, @order_by.to_sym))
+      order_args = [[@order_by, @order]]
+
+      secondary_order_by = {
+        'score'   => 'ratings',
+        'ratings' => 'score',
+        'rating'  => 'ratings',
+      }[@order_by]
+
+      if secondary_order_by
+        order_args << [secondary_order_by,
+                       ORDER_BY_COLS.fetch(secondary_order_by)]
+      end
+
+      @books = @books.order(*order_args.map {|order_by, order|
+        Sequel.public_send(order, order_by.to_sym) })
 
       erb :index
     end
