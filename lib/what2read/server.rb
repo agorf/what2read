@@ -69,10 +69,7 @@ module What2Read
 
       def column_url(name)
         name.downcase!
-        '?order_by=%{order_by}&amp;order=%{order}' % {
-          order_by: name,
-          order: column_order(name),
-        }
+        "?order_by=#{name}&amp;order=#{column_order(name)}"
       end
 
       def redirect_to_defaults?
