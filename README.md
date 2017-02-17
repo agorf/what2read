@@ -1,14 +1,30 @@
 # what2read
 
 Given the shortness of free time and the abundance of great books nowadays, it
-makes sense to read books in order of importance.
+makes sense to read books in order of importance. what2read helps you answer a
+very specific question: "Which book should I read next?"
 
-what2read is a simple Ruby script that helps you answer a very specific
-question: "Which book should I read next?"
+It consists of three scripts:
 
-It does that by accessing your [Goodreads][] "to-read" bookshelf, printing an
-HTML listing of its books ordered by [a score][] which takes into account both
-the average rating of the book and the number of ratings it has received.
+### `generate-oauth-access-token`
+
+Facilitates in creating the necessary OAuth access tokens for the [Goodreads
+API][API]. It is run once (see _Configuration_ for more info).
+
+### `import-books`
+
+Accesses your "to-read" bookshelf on [Goodreads][] and imports the books into an
+SQLite database. It also downloads book covers from [Goodreads][], OpenLibrary
+and Google (fallbacks). When run more than once, it re-imports books but skips
+covers that have already been downloaded.
+
+### `serve`
+
+Sets up an HTTP server and opens the target URL in a browser with books rendered
+in sortable columns: title, authors, ISBN, pages, score, rating, ratings.
+_score_ is an additional [calculated][score] column that takes into account both
+a book's average rating and number of ratings, giving a more accurate estimate
+of its importance than the average rating.
 
 ## Configuration
 
@@ -31,7 +47,7 @@ the URL and set it as `GOODREADS_USER_ID` in the `.env` file.
 ### Step 4: Create an OAuth access token
 
     $ bundle install # to install necessary Gems
-    $ bundle exec ruby w2r_generate_oauth_access_token.rb
+    $ bundle exec ruby bin/generate-oauth-access-token
     Opening http://www.goodreads.com/oauth/authorize?oauth_token=...
 
     Press ENTER after you have authorized the app
@@ -52,11 +68,13 @@ You are now ready to use the script.
 
 ## Usage
 
-    $ bundle exec ruby what2read.rb >out.html
-    $ xdg-open out.html
+Import books (run every once in a while):
 
-Make sure you run the script regularly since books are continually rated on
-Goodreads and the ranking is pretty volatile.
+    $ RUBYLIB=./lib bundle exec ruby bin/import-books
+
+View them:
+
+    $ RUBYLIB=./lib bundle exec ruby bin/serve
 
 ## License
 
@@ -68,6 +86,6 @@ Angelos Orfanakos, http://agorf.gr/
 
 [Goodreads]: https://www.goodreads.com/
 [API]: https://www.goodreads.com/api
-[a score]: http://stackoverflow.com/a/2134629
+[score]: http://stackoverflow.com/a/2134629
 [key]: https://www.goodreads.com/api/keys
 [MIT license]: https://github.com/agorf/what2read/blob/master/LICENSE.txt
