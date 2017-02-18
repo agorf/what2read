@@ -14,9 +14,10 @@ module What2Read
     }.freeze
 
     SECONDARY_ORDER_BY = {
+      'pages'   => 'score',
       'score'   => 'ratings',
-      'ratings' => 'score',
       'rating'  => 'ratings',
+      'ratings' => 'score',
     }
 
     set :root, File.expand_path('../..', File.dirname(__FILE__))
