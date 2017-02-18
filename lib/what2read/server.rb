@@ -79,8 +79,7 @@ module What2Read
       end
 
       def redirect_to_defaults?
-        params.empty? || !ORDER_BY_COLS.has_key?(@order_by) ||
-          !%w{asc desc}.include?(@order)
+        !ORDER_BY_COLS.has_key?(@order_by) || !%w{asc desc}.include?(@order)
       end
     end
   end
