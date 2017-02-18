@@ -6,5 +6,5 @@ table { border-spacing: 0; width: 100%; }
 th, td { padding: 4px; border-bottom: 1px solid #ccc; }
 th { text-align: left; }
 th a { color: black; text-decoration: none; }
-th.asc:after { content: "\00a0\25b2"; }
-th.desc:after { content: "\00a0\25bc"; }
+th.asc a:after { content: "\00a0\25b2"; }
+th.desc a:after { content: "\00a0\25bc"; }
