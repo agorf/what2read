@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'uri'
 require 'what2read/book'
 
 module What2Read
@@ -30,15 +31,18 @@ module What2Read
         return redirect '?order_by=score&order=desc'
       end
 
-      @books = Book
+      @books = Book.eager_graph(:authors, :shelves)
+
+      unless params['shelf'].to_s.empty?
+        @shelf = params['shelf']
+        @books = @books.where(shelves__name: @shelf)
+      end
 
       if @order_by == 'authors'
         order_msg = @order == 'asc' ? :order : :reverse
         @books = @books.
-          association_join(:authors).
-          group(:book_id).
-          select_all(:books).
-          public_send(order_msg) { group_concat(:name) }
+          group(:authors_books__book_id).
+          public_send(order_msg) { group_concat(:authors__name) }
       else
         @books = @books.order(Sequel.public_send(@order, @order_by.to_sym))
       end
@@ -52,13 +56,13 @@ module What2Read
         )
       end
 
+      @books = @books.all
+
       erb :index
     end
 
     helpers do
       def column_order(name)
-        name.downcase!
-
         if @order_by == name
           { 'asc' => 'desc', 'desc' => 'asc' }[@order] # invert
         else
@@ -70,9 +74,8 @@ module What2Read
         @order if @order_by == name.downcase
       end
 
-      def column_url(name)
-        name.downcase!
-        "?order_by=#{name}&amp;order=#{column_order(name)}"
+      def params_to_query(options)
+        URI.encode_www_form(params.merge(options))
       end
 
       def redirect_to_defaults?

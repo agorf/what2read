@@ -13,7 +13,12 @@
           <th class="align-center">#</th>
           <th class="cover"></th>
           <% %w{Title Authors ISBN Pages Score Rating Ratings}.each do |column| %>
-            <th class="<%= column_order_class(column) %>"><a href="<%= column_url(column) %>"><%= column %></a></th>
+            <th class="<%= column_order_class(column) %>">
+              <a href="?<%= params_to_query('order_by' => column.downcase, 'order' => column_order(column.downcase)) %>"><%= column %></a>
+            </th>
+          <% end %>
+          <% if @shelf.nil? %>
+            <th>Shelves</th>
           <% end %>
         </tr>
       </thead>
@@ -39,6 +44,13 @@
             <td class="align-center"><%= '%.2f' % book.score if book.score > 0 %></td>
             <td class="align-center"><%= '%.2f' % book.rating %></td>
             <td class="align-right"><%= book.ratings %></td>
+            <% if @shelf.nil? %>
+              <td>
+                <% book.shelves.sort_by(&:name).each do |shelf| %>
+                  <a href="?<%= params_to_query('shelf' => shelf.name) %>"><%= shelf.name %></a><br>
+                <% end %>
+              </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
