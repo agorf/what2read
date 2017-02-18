@@ -36,7 +36,7 @@ module What2Read
           association_join(:authors).
           group(:book_id).
           select_all(:books).
-          select_more { group_concat(`authors.name`).as(:authors) }
+          select_append { group_concat(`authors.name`).as(:authors) }
       end
 
       @books = @books.order(Sequel.public_send(@order, @order_by.to_sym))
