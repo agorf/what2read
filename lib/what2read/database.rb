@@ -1,9 +1,11 @@
+require 'logger'
 require 'sequel'
 
 module What2Read
   class Database
     def self.connection
-      @connection ||= Sequel.connect(adapter: 'sqlite', database: 'books.db')
+      @connection ||= Sequel.connect(adapter: 'sqlite', database: 'books.db',
+                                     loggers: [Logger.new($stdout)])
     end
 
     def self.create_schema
