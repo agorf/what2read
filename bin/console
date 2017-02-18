@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'irb'
+require 'what2read/author'
+require 'what2read/shelf'
+require 'what2read/book'
+
+IRB.start
