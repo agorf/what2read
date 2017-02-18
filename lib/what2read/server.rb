@@ -13,6 +13,12 @@ module What2Read
       'ratings' => 'desc',
     }.freeze
 
+    SECONDARY_ORDER_BY = {
+      'score'   => 'ratings',
+      'ratings' => 'score',
+      'rating'  => 'ratings',
+    }
+
     set :root, File.expand_path('../..', File.dirname(__FILE__))
 
     get '/' do
@@ -33,21 +39,16 @@ module What2Read
           select_more { group_concat(`authors.name`).as(:authors) }
       end
 
-      order_args = [[@order_by, @order]]
+      @books = @books.order(Sequel.public_send(@order, @order_by.to_sym))
 
-      secondary_order_by = {
-        'score'   => 'ratings',
-        'ratings' => 'score',
-        'rating'  => 'ratings',
-      }[@order_by]
-
-      if secondary_order_by
-        order_args << [secondary_order_by,
-                       ORDER_BY_COLS.fetch(secondary_order_by)]
+      if secondary_order_by = SECONDARY_ORDER_BY[@order_by]
+        @books = @books.order_append(
+          Sequel.public_send(
+            ORDER_BY_COLS.fetch(secondary_order_by),
+            secondary_order_by.to_sym
+          )
+        )
       end
-
-      @books = @books.order(*order_args.map {|order_by, order|
-        Sequel.public_send(order, order_by.to_sym) })
 
       erb :index
     end
