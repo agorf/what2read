@@ -8,8 +8,10 @@ module What2Read
 
     def self.create_schema
       create_authors
+      create_shelves
       create_books
       create_authors_books
+      create_books_shelves
     end
 
     def self.create_authors
@@ -18,6 +20,14 @@ module What2Read
 
         String :name, null: false
         String :link, null: false
+      end
+    end
+
+    def self.create_shelves
+      connection.create_table?(:shelves) do
+        primary_key :id
+
+        String :name, null: false, unique: true
       end
     end
 
@@ -39,9 +49,13 @@ module What2Read
       connection.create_join_table?(author_id: :authors, book_id: :books)
     end
 
+    def self.create_books_shelves
+      connection.create_join_table?(shelf_id: :shelves, book_id: :books)
+    end
+
     def self.truncate_tables!
-      # authors_books is first to satisfy foreign_key constraints
-      [:authors_books, :authors, :books].each do |table|
+      # Join tables listed first to satisfy foreign_key constraints
+      [:authors_books, :books_shelves, :authors, :books].each do |table|
         connection[table].truncate
       end
     end

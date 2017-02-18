@@ -38,8 +38,8 @@ loop do
 
   doc = Nokogiri.XML(response.body)
 
-  doc.css('book').each do |book_node|
-    puts What2Read::Book.parse_and_create(book_node).title
+  doc.css('review').each do |review_node|
+    puts What2Read::Book.parse_and_create(review_node).title
   end
 
   book_count = What2Read::Book.count

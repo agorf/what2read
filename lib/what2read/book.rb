@@ -5,14 +5,18 @@ require 'open-uri'
 require 'sequel'
 require 'what2read/database'
 require 'what2read/author'
+require 'what2read/shelf'
 
 module What2Read
   class Book < Sequel::Model
     MIN_RATINGS = ENV.fetch('MIN_RATINGS', 1000).to_i
 
     many_to_many :authors
+    many_to_many :shelves
 
-    def self.parse_and_create(book_node)
+    def self.parse_and_create(review_node)
+      book_node = review_node.at('book')
+
       isbn = at(book_node, 'isbn13') || at(book_node, 'isbn')
       isbn = isbn.scan(/\d+/).join if isbn
 
@@ -36,6 +40,17 @@ module What2Read
         end
 
         book.add_author(author)
+      end
+
+      review_node.css('shelves shelf').each do |shelf_node|
+        name = shelf_node['name']
+
+        unless shelf = Shelf[name: name]
+          shelf = Shelf.new
+          shelf.name = name
+        end
+
+        book.add_shelf(shelf)
       end
 
       book.download_cover(book_node)
