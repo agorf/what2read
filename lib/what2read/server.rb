@@ -32,14 +32,15 @@ module What2Read
       @books = Book
 
       if @order_by == 'authors'
+        order_msg = @order == 'asc' ? :order : :reverse
         @books = @books.
           association_join(:authors).
           group(:book_id).
           select_all(:books).
-          select_append { group_concat(`authors.name`).as(:authors) }
+          public_send(order_msg) { group_concat(:name) }
+      else
+        @books = @books.order(Sequel.public_send(@order, @order_by.to_sym))
       end
-
-      @books = @books.order(Sequel.public_send(@order, @order_by.to_sym))
 
       if secondary_order_by = SECONDARY_ORDER_BY[@order_by]
         @books = @books.order_append(
