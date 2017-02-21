@@ -13,20 +13,24 @@ API][API]. It is run once (see _Configuration_ for more info).
 
 ### `import-books`
 
-Accesses your "to-read" bookshelf on [Goodreads][] and imports the books into an
-SQLite database. It also downloads book covers from [Goodreads][], OpenLibrary
-and Google (fallbacks). When run more than once, it re-imports books but skips
+Accesses your bookshelves on [Goodreads][] and imports books into an SQLite
+database. It also downloads book covers from [Goodreads][], OpenLibrary and
+Google (fallbacks). When run more than once, it re-imports books but skips
 covers that have already been downloaded.
 
 ### `serve`
 
 Sets up an HTTP server and opens the target URL in a browser with books rendered
-in sortable columns: title, authors, ISBN, pages, score, rating, ratings.
+in sortable columns: title, authors, ISBN, pages, score, rating, ratings,
+shelves.
+
 _score_ is an additional [calculated][score] column that takes into account both
 a book's average rating and number of ratings, giving a more accurate estimate
-of its importance than the average rating.
+of its standing.
 
 ## Configuration
+
+You need to do this only once.
 
 ### Step 1: Create an environment file
 
@@ -68,7 +72,7 @@ You are now ready to use the script.
 
 ## Usage
 
-Import books (run every once in a while):
+Import books (run more than once re-import):
 
     $ RUBYLIB=./lib bundle exec ruby bin/import-books
 
