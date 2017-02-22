@@ -28,6 +28,20 @@ _score_ is an additional [calculated][score] column that takes into account both
 a book's average rating and number of ratings, giving a more accurate estimate
 of its standing.
 
+## Installation
+
+Clone the repo:
+
+    $ git clone https://github.com/agorf/what2read.git
+
+Enter the directory:
+
+    $ cd what2read
+
+And install the necessary Gems using [Bundler](http://bundler.io/):
+
+    $ bundle install
+
 ## Configuration
 
 You need to do this only once.
@@ -50,7 +64,6 @@ the URL and set it as `GOODREADS_USER_ID` in the `.env` file.
 
 ### Step 4: Create an OAuth access token
 
-    $ bundle install # to install necessary Gems
     $ bundle exec ruby bin/generate-oauth-access-token
     Opening http://www.goodreads.com/oauth/authorize?oauth_token=...
 
