@@ -9,7 +9,7 @@ require 'what2read/shelf'
 
 module What2Read
   class Book < Sequel::Model
-    MIN_RATINGS = ENV.fetch('MIN_RATINGS', 1000).to_i
+    MIN_RATINGS = ENV.fetch('MIN_RATINGS', 100).to_i
 
     many_to_many :authors
     many_to_many :shelves
