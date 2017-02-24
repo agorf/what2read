@@ -57,7 +57,7 @@ module What2Read
 
     def self.truncate_tables!
       # Join tables listed first to satisfy foreign_key constraints
-      [:authors_books, :books_shelves, :authors, :books].each do |table|
+      [:authors_books, :books_shelves, :authors, :books, :shelves].each do |table|
         connection[table].truncate
       end
     end
