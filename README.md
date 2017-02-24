@@ -99,7 +99,7 @@ Licensed under the [MIT license][].
 
 ## Author
 
-Angelos Orfanakos, http://agorf.gr/
+Angelos Orfanakos, https://agorf.gr/
 
 [Goodreads]: https://www.goodreads.com/
 [API]: https://www.goodreads.com/api
