@@ -95,7 +95,7 @@ View them:
 
 ## License
 
-Licensed under the [MIT license][].
+[MIT][]
 
 ## Author
 
@@ -105,4 +105,4 @@ Angelos Orfanakos, https://agorf.gr/
 [API]: https://www.goodreads.com/api
 [score]: http://stackoverflow.com/a/2134629
 [key]: https://www.goodreads.com/api/keys
-[MIT license]: https://github.com/agorf/what2read/blob/master/LICENSE.txt
+[MIT]: https://github.com/agorf/what2read/blob/master/LICENSE.txt
