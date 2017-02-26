@@ -31,6 +31,8 @@ module What2Read
         return redirect '?order_by=score&order=desc'
       end
 
+      @shelves = Shelf.order(:name)
+
       @books = Book.eager_graph(:authors, :shelves)
 
       unless params['shelf'].to_s.empty?
@@ -75,7 +77,7 @@ module What2Read
       end
 
       def params_to_query(options)
-        URI.encode_www_form(params.merge(options))
+        URI.encode_www_form(params.merge(options).delete_if {|_, v| v.nil? })
       end
 
       def redirect_to_defaults?

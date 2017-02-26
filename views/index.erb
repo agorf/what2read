@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
+    <div id="shelves">
+      <% @shelves.each_with_index do |shelf, i| %>
+        <%= '&middot;' if i > 0 %>
+        <% if shelf.name == @shelf %>
+          <%= shelf.name %>
+          <a href="?<%= params_to_query('shelf' => nil) %>" class="clear" title="Clear">&times;</a>
+        <% else %>
+          <a href="?<%= params_to_query('shelf' => shelf.name) %>"><%= shelf.name %></a>
+        <% end %>
+      <% end %>
+    </div>
     <table id="books">
       <thead>
         <tr>

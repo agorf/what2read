@@ -1,10 +1,15 @@
 body { font-family: sans-serif; font-size: 13px; }
+a:link { color: #00e; }
 a img { border: none; display: block; }
 .align-center { text-align: center; }
 .align-right { text-align: right; }
 table { border-spacing: 0; width: 100%; }
 th, td { padding: 4px; border-bottom: 1px solid #ccc; }
 th { text-align: left; }
-th a { color: black; text-decoration: none; }
+#books th a { color: black; text-decoration: none; }
 th.asc a:after { content: "\00a0\25b2"; }
 th.desc a:after { content: "\00a0\25bc"; }
+td.shelves a { color: #00e; }
+#shelves { text-align: center; margin-bottom: 20px; }
+#shelves a { color: #00e; }
+#shelves .clear { color: #f00; text-decoration: none; }
