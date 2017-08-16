@@ -87,11 +87,11 @@ You are now ready to use the script.
 
 Import books (run more than once re-import):
 
-    $ RUBYLIB=./lib bundle exec ruby bin/import-books
+    $ bundle exec ruby -I lib bin/import-books
 
 View them:
 
-    $ RUBYLIB=./lib bundle exec ruby bin/serve
+    $ bundle exec ruby -I lib bin/serve
 
 ## License
 
