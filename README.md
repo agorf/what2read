@@ -85,7 +85,7 @@ You are now ready to use the script.
 
 ## Usage
 
-Import books (run more than once re-import):
+Import or re-import books:
 
     $ bundle exec ruby -I lib bin/import-books
 
