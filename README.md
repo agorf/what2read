@@ -4,6 +4,10 @@ Given the shortage of time and the abundance of great books, it makes sense to
 read books in order of importance. what2read helps you answer a very specific
 question: "Which book should I read next?"
 
+This is how it looks like:
+
+![screenshot](https://raw.githubusercontent.com/agorf/what2read/master/screenshot.png)
+
 It consists of three scripts:
 
 ### `generate-oauth-access-token`
