@@ -9,7 +9,7 @@ Dotenv.load!
 request_token = OAuth::Consumer.new(
   ENV.fetch('GOODREADS_API_KEY'),
   ENV.fetch('GOODREADS_API_SECRET'),
-  site: 'http://www.goodreads.com'
+  site: 'https://www.goodreads.com'
 ).get_request_token
 
 puts "Opening #{request_token.authorize_url}"

@@ -128,7 +128,7 @@ module What2Read
     end
 
     def placeholder_cover_url
-      'http://s.gr-assets.com/assets/nophoto/book/50x75.png'
+      'https://s.gr-assets.com/assets/nophoto/book/50x75.png'
     end
   end
 end
