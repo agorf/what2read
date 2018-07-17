@@ -33,11 +33,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dotenv
-  launchy
-  nokogiri
-  oauth
-  pry
-  sequel
-  sinatra
-  sqlite3
+  dotenv (~> 2.2.0)
+  launchy (~> 2.4.3)
+  nokogiri (~> 1.7.0.1)
+  oauth (~> 0.5.1)
+  pry (~> 0.10.4)
+  sequel (~> 4.43.0)
+  sinatra (~> 1.4.8)
+  sqlite3 (~> 1.3.13)
+
+BUNDLED WITH
+   1.16.2

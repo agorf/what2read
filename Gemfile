@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'dotenv'
-gem 'launchy'
-gem 'nokogiri'
-gem 'oauth'
-gem 'sequel'
-gem 'sinatra'
-gem 'sqlite3'
+gem 'dotenv', '~> 2.2.0'
+gem 'launchy', '~> 2.4.3'
+gem 'nokogiri', '~> 1.7.0.1'
+gem 'oauth', '~> 0.5.1'
+gem 'sequel', '~> 4.43.0'
+gem 'sinatra', '~> 1.4.8'
+gem 'sqlite3', '~> 1.3.13'
 
 group :development do
-  gem 'pry'
+  gem 'pry', '~> 0.10.4'
 end
