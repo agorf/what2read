@@ -10,19 +10,19 @@ This is how it looks like:
 
 It consists of three scripts:
 
-### `generate-oauth-access-token`
+### `bin/generate-oauth-access-token`
 
 Facilitates in creating the necessary OAuth access tokens for the [Goodreads
 API][API]. It is run once (see _Configuration_ for more info).
 
-### `import-books`
+### `bin/import-books`
 
 Accesses your bookshelves on [Goodreads][] and imports books into an SQLite
 database. It also downloads book covers from [Goodreads][], OpenLibrary and
 Google (fallbacks). When run more than once, it re-imports books but skips
 covers that have already been downloaded.
 
-### `serve`
+### `config.ru`
 
 Sets up an HTTP server listing books in sortable columns: title, authors, ISBN, pages, score, rating, ratings,
 shelves.
@@ -94,11 +94,11 @@ Import or re-import books:
 
 Run the server:
 
-    $ bundle exec ruby -I lib bin/serve
+    $ bundle exec rackup -I lib
 
 View them:
 
-    $ xdg-open http://localhost:4567/
+    $ xdg-open http://localhost:9292/
 
 ## License
 
