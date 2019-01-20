@@ -1,12 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'launchy'
 require 'what2read/server'
-
-Process.fork do
-  sleep 2
-  bind, port = What2Read::Server.bind, What2Read::Server.port
-  Launchy.open("http://#{bind}:#{port}/")
-end
 
 What2Read::Server.run!

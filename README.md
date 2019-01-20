@@ -24,8 +24,7 @@ covers that have already been downloaded.
 
 ### `serve`
 
-Sets up an HTTP server and opens the target URL in a browser with books rendered
-in sortable columns: title, authors, ISBN, pages, score, rating, ratings,
+Sets up an HTTP server listing books in sortable columns: title, authors, ISBN, pages, score, rating, ratings,
 shelves.
 
 _score_ is an additional [calculated][score] column that takes into account both
@@ -93,9 +92,13 @@ Import or re-import books:
 
     $ bundle exec ruby -I lib bin/import-books
 
-View them:
+Run the server:
 
     $ bundle exec ruby -I lib bin/serve
+
+View them:
+
+    $ xdg-open http://localhost:4567/
 
 ## License
 
