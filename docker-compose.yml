@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+
+  what2read:
+    build: .
+    ports:
+      - 9292:9292
+    volumes:
+      - .:/usr/src/app/
+    environment:
+      RUBYLIB: lib
+    env_file:
+      - .env

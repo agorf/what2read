@@ -36,18 +36,19 @@ of its standing.
 Clone the repo:
 
     $ git clone https://github.com/agorf/what2read.git
-
-Enter the directory:
-
     $ cd what2read
 
-And install the necessary Gems using [Bundler](http://bundler.io/):
+With [Docker][], you don't need Ruby, Bundler, Gems etc. Just build the image:
+
+    $ docker-compose build what2read
+
+If you don't have [Docker][], install the necessary Gems with [Bundler][]:
 
     $ bundle install
 
 ## Configuration
 
-You need to do this only once.
+You need to do the following only once.
 
 ### Step 1: Create an environment file
 
@@ -67,16 +68,21 @@ the URL and set it as `GOODREADS_USER_ID` in the `.env` file.
 
 ### Step 4: Create an OAuth access token
 
+With [Docker][]:
+
+    $ docker-compose run --rm what2read ./bin/generate-oauth-access-token
+
+Without [Docker][]:
+
     $ bundle exec ruby bin/generate-oauth-access-token
-    Opening https://www.goodreads.com/oauth/authorize?oauth_token=...
+
+Follow the printed instructions:
+
+    Open https://www.goodreads.com/oauth/authorize?oauth_token=... in a browser
 
     Press ENTER after you have authorized the app
 
-This will print a Goodreads URL (as well as opening it with your browser) from
-which you can authorize the script. Once done, return to the terminal and press
-the Enter key:
-
-    Place the following into your .env file:
+    Place the following into your `.env` file:
 
     OAUTH_ACCESS_TOKEN=...
     OAUTH_ACCESS_SECRET=...
@@ -88,15 +94,25 @@ You are now ready to use the script.
 
 ## Usage
 
-Import or re-import books:
+Import or re-import books with [Docker][]:
+
+    $ docker-compose run --rm what2read ./bin/import-books
+
+Without [Docker][]:
 
     $ bundle exec ruby -I lib bin/import-books
 
-Run the server:
+Run the server with [Docker][]:
+
+    $ docker-compose up what2read
+
+Without [Docker][]:
 
     $ bundle exec rackup -I lib
 
-View them:
+Press `Ctrl-C` to stop the server.
+
+View the books:
 
     $ xdg-open http://localhost:9292/
 
@@ -113,3 +129,5 @@ Angelos Orfanakos, https://agorf.gr/
 [score]: http://stackoverflow.com/a/2134629
 [key]: https://www.goodreads.com/api/keys
 [MIT]: https://github.com/agorf/what2read/blob/master/LICENSE.txt
+[Bundler]: http://bundler.io/
+[Docker]: https://www.docker.com/
