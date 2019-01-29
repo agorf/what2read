@@ -42,7 +42,7 @@ With [Docker][], you don't need Ruby, Bundler, Gems etc. Just build the image:
 
     $ docker-compose build what2read
 
-If you don't have [Docker][], install the necessary Gems with [Bundler][]:
+If you don't have Docker, install the necessary Gems with [Bundler][]:
 
     $ bundle install
 
@@ -72,7 +72,7 @@ With [Docker][]:
 
     $ docker-compose run --rm what2read ./bin/generate-oauth-access-token
 
-Without [Docker][]:
+Without Docker:
 
     $ bundle exec ruby bin/generate-oauth-access-token
 
@@ -98,15 +98,15 @@ Import or re-import books with [Docker][]:
 
     $ docker-compose run --rm what2read ./bin/import-books
 
-Without [Docker][]:
+Without Docker:
 
     $ bundle exec ruby -I lib bin/import-books
 
-Run the server with [Docker][]:
+Run the server with Docker:
 
     $ docker-compose up what2read
 
-Without [Docker][]:
+Without Docker:
 
     $ bundle exec rackup -I lib
 
