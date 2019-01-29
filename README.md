@@ -61,10 +61,12 @@ Visit Goodreads and apply for a [developer API key][key]. Copy the key and the
 secret and set them as `GOODREADS_API_KEY` and `GOODREADS_API_SECRET` in the
 `.env` file respectively.
 
-### Step 3: Set your Goodreads user ID
+### Step 3: Set the Goodreads user ID
 
 Visit [Goodreads][] and go to your profile page. Copy your numeric user ID from
 the URL and set it as `GOODREADS_USER_ID` in the `.env` file.
+
+Note that this works for any Goodreads user id you're connected with.
 
 ### Step 4: Create an OAuth access token
 
