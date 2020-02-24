@@ -6,7 +6,7 @@ GEM
     method_source (0.8.2)
     mini_portile2 (2.4.0)
     mustermann (1.0.2)
-    nokogiri (1.10.4)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     oauth (0.5.1)
     pry (0.10.4)
@@ -31,7 +31,7 @@ PLATFORMS
 
 DEPENDENCIES
   dotenv (~> 2.2.0)
-  nokogiri (~> 1.10.4)
+  nokogiri (~> 1.10.8)
   oauth (~> 0.5.1)
   pry (~> 0.10.4)
   sequel (~> 4.43.0)
