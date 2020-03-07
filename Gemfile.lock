@@ -37,6 +37,3 @@ DEPENDENCIES
   sequel (~> 4.43.0)
   sinatra (~> 2.0.0)
   sqlite3 (~> 1.3.13)
-
-BUNDLED WITH
-   1.16.2
