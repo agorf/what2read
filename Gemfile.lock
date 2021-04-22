@@ -9,7 +9,7 @@ GEM
     nokogiri (1.11.0)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
-    oauth (0.5.1)
+    oauth (0.5.5)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -34,7 +34,7 @@ PLATFORMS
 DEPENDENCIES
   dotenv (~> 2.2.0)
   nokogiri (~> 1.11.0)
-  oauth (~> 0.5.1)
+  oauth (~> 0.5.5)
   pry (~> 0.10.4)
   sequel (~> 4.43.0)
   sinatra (~> 2.0.0)
