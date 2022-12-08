@@ -7,7 +7,7 @@ GEM
     mini_portile2 (2.8.0)
     mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
-    nokogiri (1.13.9)
+    nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     oauth (0.5.5)
@@ -15,7 +15,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    racc (1.6.0)
+    racc (1.6.1)
     rack (2.2.4)
     rack-protection (2.2.3)
       rack
@@ -35,7 +35,7 @@ PLATFORMS
 
 DEPENDENCIES
   dotenv (~> 2.2.0)
-  nokogiri (~> 1.13.9)
+  nokogiri (~> 1.13.10)
   oauth (~> 0.5.5)
   pry (~> 0.10.4)
   sequel (~> 4.43.0)
